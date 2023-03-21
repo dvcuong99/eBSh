@@ -1,0 +1,162 @@
+﻿@model eBSH.Models.Motorcycle
+@{
+    ViewBag.Title = "Chi tiết đơn";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="box box-body" style="display: flex; justify-content: center;">
+    <div class="box-body col-md-11">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Số Hợp Đồng:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.so_hd</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Số ID:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.so_id</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Hiệu lực:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.ngay_hl <b>đến</b> @Model.ngay_hl</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Người mua:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.ten</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Số ĐT:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.dien_thoai</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Email:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.email </p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-2">Địa chỉ:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.dchi</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Biển xe:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.bien_xe</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Số khung:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.so_khung</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Số máy:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.so_may</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Hãng xe:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.hang_xe</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Hiệu xe:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.hieu_xe</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-4">Mục đích SD:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.ma_bh</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-7">Tiền BH về người:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.tienbh_ng.ToString("#,##0") VND</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-5">Tiền BH về tài sản:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.tienbh_ts.ToString("#,##0") VND</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-5">Phí BH:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.phibh_ds.ToString("#,##0") VND</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-7">Số người</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.so_cn.ToString("#,##0") </p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-5">Mức Trách nhiệm:</label><span class="text-danger"></span>
+                    <p class="text-black">@Model.tienbh_ts.ToString("#,##0") đồng/1 người/1 vụ</p><span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group material_input_block">
+                    <label class="text-black col-md-5">Phí BH:</label><span class="text-danger"></span>
+                    <p>@Model.phibh_nn.ToString("#,##0") VND</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+            </div>
+            <div class="col-md-3">
+                @{ decimal sum = @Model.phibh_ds + @Model.phibh_nn;}
+                <div class="form-group material_input_block">
+                    <label class="text-yellow col-md-5">Tổng phí:</label><span class="text-danger"></span>
+                    <p>@sum.ToString("#,##0") VND</p><span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

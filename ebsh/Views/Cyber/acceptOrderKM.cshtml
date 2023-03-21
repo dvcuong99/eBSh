@@ -1,0 +1,58 @@
+﻿@model eBSH.Models.OrderVM
+@{
+    Layout = "~/Views/Shared/_CyberLayout.cshtml";
+    ViewBag.Title = "Xác nhận thông tin";
+}
+<div class="row">
+    <div class="col-xs-12 col-md-9">
+        <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="col-xs-3 bs-wizard-step complete">
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-green-active">Đăng ký</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step active">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active">Xác nhận</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- active -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray-active">Nhận e-policy</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-md-9">
+    <div class="callout callout-warning">
+        <p>@ViewBag.KM</p>
+        <p>@ViewBag.Message</p>
+        <p>@ViewBag.Note</p>
+    </div>
+    <div class="box box-default">
+        @using (Html.BeginForm("acceptOrderKM", "cyber"))
+            {
+            <div class="box-body">
+                @Html.AntiForgeryToken()
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="@Model.orderInf.PolicyPreviewUrl"></iframe>
+                </div>
+
+                @Html.HiddenFor(m => m.cyberInf.SO_ID)
+                @Html.HiddenFor(m => m.orderInf.PolicyID)
+                @Html.HiddenFor(m => m.orderInf.Amount)
+                @Html.HiddenFor(m => m.orderInf.OrderDescription)
+            </div>
+            <div class="box-footer">
+                <input type="submit" name="btnPay" value="Xác nhận" id="btnPay" class="btn btn-primary">
+                <a class="btn btn-default" href="@Url.Action("regorder", "Cyber",new { gcn = Model.cyberInf.SO_ID })">Quay lại</a>
+            </div>
+
+        }
+    </div>
+</div>
+

@@ -1,0 +1,81 @@
+﻿@using WebHelpers.Mvc5
+<aside class="main-sidebar">
+    <section class="sidebar">
+        @* BEGIN Search *@
+        @*<form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>*@
+        @* END Search *@
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="@Url.IsLinkActive("Index", "MCManage")">
+                <a href="@Url.Action("Index", "MCManage")"><i class="fa fa-link"></i> <span>Bảo hiểm xe máy</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "MVCManage")">
+                <a href="@Url.Action("Index", "MVCManage")"><i class="fa fa-link"></i> <span>Bảo hiểm xe ô tô</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "CyberManage")">
+                <a href="@Url.Action("Index", "CyberManage")"><i class="fa fa-link"></i> <span>Bảo hiểm CyberGuard</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "TopCareManage")">
+                <a href="@Url.Action("Index", "TopCareManage")"><i class="fa fa-link"></i> <span>Bảo hiểm TopCare</span></a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Mã khuyến mại</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "GiftCodeManage")">Danh sách mã</a></li>
+                    <li><a href="@Url.Action("Create", "GiftCodeManage")">Thêm mã</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Mã tham chiếu</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "RefCodeManage")">Danh sách mã</a></li>
+                    <li><a href="@Url.Action("Create", "RefCodeManage")">Thêm mã</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Quản lý tài khoản</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ListAccount", "Account")">Danh sách tài khoản</a></li>
+                    <li><a href="@Url.Action("Register", "Account")">Thêm tài khoản</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Quản lý Quyền</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "Role")">Danh sách quyền</a></li>
+                    <li><a href="@Url.Action("Create", "Role")">Thêm quyền</a></li>
+                </ul>
+            </li>
+        </ul>
+        @* END Menu *@
+    </section>
+</aside>

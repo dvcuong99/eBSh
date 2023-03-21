@@ -1,0 +1,29 @@
+﻿@model eBSH.Models.PHH_CBS_GCN
+@{
+    ViewBag.Title = "Chi tiết đơn";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="single-table">
+                <div class="table-responsive">
+                    <table class="table progress-table" id="table">
+                        <thead class="text-uppercase">
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:50%"><b>Số HĐ:</b> @Model.SO_HD</td>
+                                <td style="width:50%"><b>Khách hàng:</b> @Model.KH</td>
+                            </tr>
+                            <tr>
+                                <td><b>Người được BH:</b> @Model.HO_TH</td>
+                                <td><b>Số CCCD:</b> @Model.SO_CC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

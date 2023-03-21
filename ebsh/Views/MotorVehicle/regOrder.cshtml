@@ -1,0 +1,449 @@
+﻿
+@model eBSH.Models.MotorVehicle_VM
+
+@{
+    Layout = "~/Views/Shared/_MotorVehicleLayout.cshtml";
+    ViewBag.Title = "Yêu cầu tham gia bảo hiểm";
+}
+
+<div class="row">
+    <div class="row bs-wizard" style="border-bottom:0;">
+        <div class="col-xs-3 bs-wizard-step active">
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active"> Đăng ký</span> </div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Xác nhận</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Thanh toán</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- active -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Nhận e-policy</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+    </div>
+</div>
+<div class="tabbable-panel">
+    <!-- Tab Buttons -->
+    <div class="tabbable-line">
+        <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+            <li class="active">
+                <a href="#_FirstTab" role="tab" data-toggle="tab">Đăng ký tham gia BH</a>
+            </li>
+            <li>
+                <a href="https://bshc.com.vn/ca-nhan/bao-hiem-bat-buoc-trach-nhiem-dan-su-cua-chu-xe-o-to#1589352286850-187f51a8-5" target="_blank" role="tab">Quy tắc bảo hiểm</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content Containers -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="_FirstTab">
+                @using (Html.BeginForm("regorder", "MotorVehicle"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="text-red"> @ViewBag.Message</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.ma_bh)
+                                @Html.HiddenFor(model => model.refcode)
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Người mua</label>
+                                        @Html.EditorFor(model => model.ten_kh, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Tên khách hàng" } })
+                                        @Html.ValidationMessageFor(m => m.ten_kh, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Điện thoại</label>
+                                        @Html.EditorFor(model => model.dien_thoai_kh, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số điện thoại" } })
+                                        @Html.ValidationMessageFor(m => m.dien_thoai_kh, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Email</label>
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Email nhận GCN BSH" } })
+                                        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Địa chỉ</label>
+                                        @Html.EditorFor(model => model.dchi, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Địa chỉ" } })
+                                        @Html.ValidationMessageFor(m => m.dchi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Biển xe</label>
+                                        @Html.EditorFor(model => model.bien_xe, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Biển số xe" } })
+                                        @Html.ValidationMessageFor(m => m.bien_xe, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số khung</label>
+                                        @Html.EditorFor(model => model.so_khung, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số khung xe" } })
+                                        @Html.ValidationMessageFor(m => m.so_khung, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số máy</label>
+                                        @Html.EditorFor(model => model.so_may, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số máy xe" } })
+                                        @Html.ValidationMessageFor(m => m.so_may, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Hãng xe</label>
+                                        @Html.DropDownListFor(x => Model.hang_xe, new SelectList(Model.ListHangXe, "Ma", "Ma"), htmlAttributes: new { @class = "form-control input-sm material_input", id = "ListHangXe" })
+                                        @Html.ValidationMessageFor(m => m.hang_xe, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.hang_xe, new { @id = "hang_xe" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Hiệu xe</label>
+
+                                        <div id="HieuXeDiv">
+                                            <select class="form-control input-sm material_input" id="HieuXeSelect"></select>
+                                            @Html.HiddenFor(model => model.hieu_xe, new { @id = "hieu_xe" })
+                                            @Html.ValidationMessageFor(m => m.hieu_xe, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Mục đích sử dụng</label>
+                                        @Html.DropDownListFor(x => Model.loai_xe, new SelectList(Model.listMaBHXe, "Ma_bh", "ten"), htmlAttributes: new { @class = "form-control input-sm material_input", @id = "listMaBHXE" })
+                                        @*@Html.ValidationMessageFor(m => m.ma_bh, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @*<div class="col-md-3">
+                                        <div class="form-group material_input_block">
+                                            <label class="text-yellow">Loại xe</label>
+                                            @Html.DropDownListFor(x => Model.nhom_xe, new SelectList(Model.ListNhomXe, "Ma", "Ten"), htmlAttributes: new { @class = "form-control input-sm material_input" })
+                                        </div>
+                                    </div>*@
+                                @*<div class="col-md-3">
+                                        <div class="form-group material_input_block">
+                                            <label class="text-yellow">Loại hình xe</label>
+                                            @Html.DropDownListFor(x => Model.loai_xe, new SelectList(Model.ListLoaiXe, "Ma", "Ten"), htmlAttributes: new { @class = "form-control input-sm material_input" })
+                                        </div>
+                                    </div>*@
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số chỗ ngồi</label>
+                                        @Html.EditorFor(model => model.so_cn, new { htmlAttributes = new { @class = "form-control input-sm material_input", @Value = Model.so_lpx.ToString("0") } })
+                                        @Html.ValidationMessageFor(m => m.so_cn, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Trọng tải</label>
+                                        @Html.EditorFor(model => model.ttai, new { htmlAttributes = new { @class = "form-control input-sm material_input", @Value = Model.ttai.ToString("0") } })
+                                        @Html.ValidationMessageFor(m => m.ttai, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Tiền BH về người</label>
+                                        <input class="form-control input-sm material_input" type="text" id="tienbb_ng_text" readonly />
+                                        @Html.HiddenFor(model => model.tienbb_ng, new { @id = "tienbb_ng" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Tiền BH về tài sản</label>
+                                        <input class="form-control input-sm material_input" type="text" id="tienbb_ts_text" readonly />
+                                        @Html.HiddenFor(model => model.tienbb_ts, new { @id = "tienbb_ts" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Phí BH</label>
+                                        <input class="form-control input-sm material_input" type="text" id="phibb_ds_text" readonly />
+                                        @Html.HiddenFor(model => model.phibb_ds, new { @id = "phibb_ds" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số người</label>
+                                        @Html.EditorFor(model => model.so_lpx, new { htmlAttributes = new { @class = "form-control input-sm material_input", @type = "number", @id = "so_lpx", @Value = Model.so_lpx.ToString("0") } })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">STBH/người</label>
+                                        @Html.HiddenFor(model => model.phibb_ds, new { @id = "tienbh_nn" })
+                                        @Html.DropDownList("lsSTBH", new SelectList(Model.ListSTBH, "Phi", "SoTienBH"), new { @class = "form-control input-sm material_input" })
+                                        @Html.HiddenFor(model => model.tienbh_ntx, new { @id = "tienbh_ntx" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Phí BH</label>
+                                        <input class="form-control input-sm material_input" type="text" id="phibh_ntx_text" readonly />
+                                        @Html.HiddenFor(model => model.phibh_ntx, new { @id = "phibh_ntx" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Ngày hiệu lực</label>
+                                        <input type="text" class="form-control input-sm datepicker material_input" name="NGAY_HL" id="NGAY_HL" value="@Model.ngay_hl" data-date-format="dd/mm/yyyy" data-date-start-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Ngày kết thúc</label>
+                                        <input type="text" class="form-control input-sm datepicker material_input" name="NGAY_KT" id="NGAY_KT" value="@Model.ngay_kt" data-date-format="dd/mm/yyyy" data-date-start-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="text-yellow"> Tổng phí bảo hiểm :</label>
+                                        <label id="lblPhiBH" class="description-header text-green"><output type="text" id="outTongPhi" class="description-header text-green" /></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <input type="submit" class="btn btn-primary pull-left" value="Đăng ký" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/js/plugins/chosen/chosen.jquery.js"></script>
+    <link href="~/Content/css/bootstrap-chosen.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#hieu_xe').val(getCookie('hieu_xe'));
+            $('#ListHangXe').chosen();
+            $('#listMaBHXE').chosen();
+            loadHieuXe();
+        });
+        function ddmmyyyy_to_mmddyyyy(theDate) {
+            strSeparator = ""
+            if (theDate.indexOf("/") != -1) strSeparator = "/";
+            if (theDate.indexOf("-") != -1) strSeparator = "-";
+            if (theDate.indexOf(".") != -1) strSeparator = ".";
+            if (strSeparator == "")
+                return "";
+            parts = theDate.split(strSeparator);
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+            return month + strSeparator + day + strSeparator + year.substr(0, 4);
+        }
+
+        function dateCompare(p_str_date1, p_str_date2) {
+            date1 = new Date(ddmmyyyy2mmddyyyy(p_str_date1));
+            date2 = new Date(ddmmyyyy2mmddyyyy(p_str_date2));
+            return Math.floor((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+        }
+
+        function GetToDate(date1, thoihan) {
+            var fromDate = new Date(ddmmyyyy_to_mmddyyyy(date1));
+            var d = new Date(fromDate);
+            var newdate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + (d.getFullYear() + thoihan);
+            return newdate;
+        }
+
+        $('#NGAY_HL').change(function (event) {
+            var hl = $('input#NGAY_HL').val();
+            $("#NGAY_KT").prop('value', GetToDate(hl, 1));
+        });
+
+        $("#ListHangXe").change(function () {
+            setCookie('hieu_xe', "", 1);
+            loadHieuXe();
+        });
+        $("#HieuXeSelect").change(function () {
+            var select = $("#HieuXeSelect").val();
+            setCookie('hieu_xe', select, 1);
+            $("#hieu_xe").val(select);
+        });
+
+        function format2(n, currency) {
+            return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
+
+
+        function loadHieuXe() {
+            var selectVal = $("#ListHangXe").val();
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'Json',
+                    url: '/MotorVehicle/GetHieuXe',
+                    data: { ma: selectVal },
+                    success:
+                        function (reponse) {
+                            console.log(reponse.data);
+                            var mu = "<option value='0'>-- Chọn hiệu xe --</option>";
+                            for (var i = 0; i < reponse.data.length; i++) {
+                                mu += "<option value='" + reponse.data[i].Ma + "'>" + reponse.data[i].Ma + "</option>"
+                            }
+                            $("#HieuXeSelect").html(mu);
+                            $("#HieuXeSelect").chosen();
+                            $('#HieuXeSelect').trigger('chosen:updated');
+                        },
+                    error:
+                        function (reponse) {
+                            alert("Lỗi");
+                        }
+                });
+        }
+        function loadBieuPhi() {
+            var selectVal = $("#listMaBHXE").val();
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'Json',
+                    url: '/MotorVehicle/GetBieuPhi',
+                    data: { ma: selectVal },
+                    success:
+                        function (reponse) {
+                            console.log(reponse.data);
+                            for (var i = 0; i < reponse.data.length; i++) {
+                                if (reponse.data[i].Loai == "BN") {
+                                    $("#tienbb_ng").val(reponse.data[i].Tien);
+                                    //$("#tienbb_ng_text").val(format2(reponse.data[i].Tien[i], "vnd"));
+                                    $("#tienbb_ng_text").val(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(Number(reponse.data[i].Tien)));
+
+                                    $("#phibb_ds").val(reponse.data[i].Phi);
+                                    $("#phibb_ds_text").val(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(Number(reponse.data[i].Phi)));
+                                }
+                                else if (reponse.data[i].Loai == "BT") {
+                                    $("#tienbb_ts").val(reponse.data[i].Tien);
+                                    $("#tienbb_ts_text").val(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(Number(reponse.data[i].Tien)));
+                                }
+                                TongPhi();
+                            }
+                        },
+                    error:
+                        function (reponse) {
+                            alert("Lỗi");
+                        }
+                });
+        }
+        function TongPhi() {
+            let phi1 = $("#phibb_ds").val();
+            let phi2 = $("#phibh_ntx").val();
+            let tong = parseFloat(phi1) + parseFloat(phi2);
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+            });
+            $("#outTongPhi").val(formatter.format(tong));
+        }
+
+        $("#lsSTBH").change(function () {
+            var so_nguoi = $("#so_lpx").val();
+            var phi_stbh = $('#lsSTBH :selected').val();
+            $("#phibh_ntx").val(so_nguoi * phi_stbh);
+            $("#phibh_ntx_text").val(new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'VND' }).format(Number(so_nguoi * phi_stbh)));
+            $("#tienbh_ntx").val(phi_stbh * 1000);
+            TongPhi();
+        });
+
+        $("#so_lpx").change(function () {
+            var so_lpx = $(this).val();
+            var so = so_lpx.split(".");
+            if (so[0] < 0)
+                $(this).val(0);
+            else
+                $(this).val(so[0]);
+            $("#lsSTBH").change();
+        });
+
+        $("#listMaBHXE").change(function () {
+            var maBH = $(this).val();
+            var arr = @Html.Raw(Json.Encode(@ViewBag.load_cn));
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].Ma_BH == maBH) {
+                    $("#so_cn").val(arr[i].so_cn);
+                    break;
+                }
+            }
+            $("#ma_bh").val(maBH);
+            console.log("maBH");
+            loadBieuPhi();
+        });
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+    </script>
+}

@@ -1,0 +1,188 @@
+﻿@model eBSH.Models.MVCPaginatedVM
+@{
+    ViewBag.Title = "Danh sách đơn Xe cơ giới";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="single-table">
+                <div class="table-responsive">
+                    <div>
+                        @using (Html.BeginForm("Index", "MVCManage", FormMethod.Get))
+                        {
+                            <div class="form-row align-items-center">
+                                <div class="col-sm-2 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="tungay">Từ </span>
+                                        </div>
+                                        <input type="text" class="form-control datepicker" id="SDate" value="@ViewBag.SDate" placeholder="dd/MM/yyyy" name="SDate" data-date-format="dd/mm/yyyy" data-date-end-date="0d" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="denngay">đến </span>
+                                        </div>
+                                        <input type="text" class="form-control datepicker" id="EDate" value="@ViewBag.EDate" placeholder="dd/MM/yyyy" name="EDate" data-date-format="dd/mm/yyyy" data-date-end-date="0d" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="madonvi">Mã đơn vị </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="MaDvi" name="MaDvi" value="@ViewBag.MaDvi_text" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="kenhkt">Kênh </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="Kenh" name="Kenh" value="@ViewBag.Kenh_text" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="dailyban">Đại lý </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="DaiLy" name="DaiLy" value="@ViewBag.DaiLy_text" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 my-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="denngay">&nbsp;</span>
+                                        </div>
+                                        <div class="col-auto my-1">
+                                            <button type="submit" class="btn btn-primary">Lọc</button>
+                                            <a href="@Url.Action("ExportData","MVCManage", new { SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi = ViewBag.MaDvi ,Kenh = ViewBag.Kenh,DaiLy = ViewBag.DaiLy })" title="Xuất danh sách đơn ra Excel" class="btn btn-primary" target="_blank">Xuất dữ liệu</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <table class="table table-hover progress-table text-left" id="table">
+                        <thead class="text-uppercase">
+                            <tr class="item">
+                                <th scope="col">Số</th>
+                                <th scope="col">Số hợp đồng</th>
+                                <th>Biển xe</th>
+                                <th>Tổng phí BH</th>
+                                <th>Hiệu Lực</th>
+                                <th>Người được BH</th>
+                                <th>Số ĐT</th>
+                                <th>Email</th>
+                                <th>Địa chỉ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PaginatedList())
+                            {
+                                decimal sum = @item.phibb_ds + @item.phibb_ds;
+                                <tr>
+                                    <th scope="row" style="text-align:left">@Html.ActionLink(@item.so_id.ToString(), "Detail", "MVCManage", new { id = item.so_id }, null)</th>
+                                    <td>@item.so_hd</td>
+                                    <td>@item.bien_xe</td>
+                                    <td>@sum.ToString("#,##0") VND</td>
+                                    <td>@item.ngay_hl đến @item.ngay_kt</td>
+                                    <td>@item.ten</td>
+                                    <td>@item.dien_thoai</td>
+                                    <td>@item.email</td>
+                                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;" title="@item.dchi">@item.dchi</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage > 1 ?  Model.CurrentPage - 1 :1, SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                </li>
+                @if (Model.PageCount() <= 10)
+                {
+                    for (int i = 1; i <= (Model.PageCount() < 10 ? Model.PageCount() : 10); i++)
+                    {
+                        <li class="@(Model.CurrentPage == i ? "page-item active" : "page-item")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i, SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">@i</a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    if (Model.CurrentPage <= 4)
+                    {
+                        for (int i = 1; i <= (Model.PageCount() < Model.CurrentPage + 3 ? Model.PageCount() : Model.CurrentPage + 3); i++)
+                        {
+                            <li class="@(Model.CurrentPage == i ? "page-item active" : "page-item")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i, SDate = ViewBag.SDate, EDate = ViewBag.EDate ,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">@i</a>
+                            </li>
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="#">..</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageCount(),SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">
+                                @Model.PageCount()
+                            </a>
+                        </li>
+                    }
+                    else if (Model.CurrentPage < Model.PageCount() - 3)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = 1, SDate = ViewBag.SDate, EDate = ViewBag.EDate ,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">..</a>
+                        </li>
+                        for (int i = (Model.CurrentPage > 4 ? Model.CurrentPage - 3 : Model.CurrentPage); i <= (Model.PageCount() < Model.CurrentPage + 3 ? Model.PageCount() : Model.CurrentPage + 3); i++)
+                        {
+                            <li class="@(Model.CurrentPage == i ? "page-item active" : "page-item")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i, SDate = ViewBag.SDate, EDate = ViewBag.EDate ,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">@i</a>
+                            </li>
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="#">..</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageCount(), SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">
+                                @Model.PageCount()
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = 1,  SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">..</a>
+                        </li>
+                        for (int i = (Model.CurrentPage > 4 ? Model.CurrentPage - 3 : Model.CurrentPage); i <= Model.PageCount(); i++)
+                        {
+                            <li class="@(Model.CurrentPage == i ? "page-item active" : "page-item")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i, SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">@i</a>
+                            </li>
+                        }
+                    }
+                }
+
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage < Model.PageCount() ?  Model.CurrentPage + 1: Model.PageCount(), SDate = ViewBag.SDate, EDate = ViewBag.EDate,MaDvi=ViewBag.MaDvi,Kenh=ViewBag.Kenh,DaiLy=ViewBag.DaiLy})">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+﻿@{
+    Layout = "~/Views/Shared/_CyberLayout.cshtml";
+    ViewBag.Title = "CyberGuard";
+    ViewBag.Description = "Yêu cầu bảo hiểm";
+}
+<div class="row">
+    <div class="col-xs-12 col-md-9">
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <b>
+                            <span>
+                                Bạn đã chọn gói sản phẩm
+                            </span>
+                            <span style="color:red">CyberGuard @ViewBag.Type:</span>
+                        </b>
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p>Gồm các quyền lợi: </p>
+                            <p>
+                                <b>
+                                    <span style="color:#002060">
+                                        @ViewBag.U
+                                    </span>
+                                </b>
+                            </p>
+                            <p>
+                                <b>
+                                    <span style="color:#002060">
+                                        @ViewBag.O
+                                    </span>
+                                </b>
+                            </p>
+                            <p>
+                                <b>
+                                    <span style="color:#002060">
+                                        @ViewBag.C
+                                    </span>
+                                </b>
+                            </p>
+
+                            <p>
+                                <b>
+                                    <span style="color:#002060">
+                                        @ViewBag.I
+                                    </span>
+                                </b>
+                            </p>
+
+                            <p>
+                                <b>
+                                    <span style="color:#002060">
+                                        @ViewBag.R
+                                    </span>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <b>
+                                <span>
+                                    Bạn sẽ bảo hiểm theo phiên bản
+                                </span>
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <table border="0" cellspacing="0" cellpadding="0" style="margin-left:1.0in;border-collapse:collapse;border:none;padding:0in 5.4pt 0in 5.4pt">
+                                <tr>
+                                    <td width="46" valign="top" style="width:34.35pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <input type="radio" id="ver" name="ver" value="NH" checked />
+                                    </td>
+                                    <td width="161" valign="top" style="width:120.45pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <p>Tài khoản ngân hàng</p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td width="46" valign="top" style="width:34.35pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <input type="radio" id="ver" name="ver" value="VI" />
+                                    </td>
+                                    <td width="161" valign="top" style="width:120.45pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <p>Ví điện tử</p>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <b>
+                                <span>
+                                    Chọn gói bảo hiểm:
+                                </span>
+                            </b>
+                            <span>với số tiền bảo hiểm tương ứng với mỗi quyền lợi</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <table border="0" cellspacing="0" cellpadding="0" style="margin-left:1.0in;border-collapse:collapse;border:none;padding:0in 5.4pt 0in 5.4pt">
+                                <tr>
+                                    <td width="46" valign="top" style="width:34.35pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <input type="radio" id="size" name="size" value="XL" checked />
+                                    </td>
+                                    <td valign="top" style="padding:0in 5.4pt 0in 5.4pt">
+                                        <p>
+                                            Size XL (3000 USD/quyền lợi)<br />
+                                            <b>Phí bảo hiểm: @ViewBag.PhiXL /năm</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="46" valign="top" style="width:34.35pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <input type="radio" id="size" name="size" value="M" />
+                                    </td>
+                                    <td valign="top" style="padding:0in 5.4pt 0in 5.4pt">
+                                        <p>
+                                            Size M (1500 USD/quyền lợi)<br />
+                                            <b>Phí bảo hiểm: @ViewBag.PhiM /năm</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="46" valign="top" style="width:34.35pt;padding:0in 5.4pt 0in 5.4pt">
+                                        <input type="radio" id="size" name="size" value="S" />
+                                    </td>
+                                    <td valign="top" style="padding:0in 5.4pt 0in 5.4pt">
+                                        <p>
+                                            Size S (1000 USD/quyền lợi)<br />
+                                            <b>Phí bảo hiểm: @ViewBag.PhiS /năm</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <a href="/cyber/regorder?type=@ViewBag.Type&size=XL&ver=NH" class="btn btn-primary btn-sm">Đăng ký</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+    </script>
+}

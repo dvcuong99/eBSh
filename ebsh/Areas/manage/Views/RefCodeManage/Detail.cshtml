@@ -1,0 +1,20 @@
+﻿@model eBSH.Models.RefCode
+@{
+    ViewBag.Title = "Chi tiết mã refcode";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div>Code KM:@Model.Code</div>
+            <div>Ma BH:@Model.Ma_BH</div>
+            <div>CTBH:@Model.CTBH</div>
+            <div>TLKM:@Model.TL</div>
+            <div>MTN:@Model.MTN</div>
+            <div>Hạn SD:@Model.StartDate đến @Model.EndDate</div>
+            <div>Đơn vị:@Model.Ma_Dvi</div>
+            <div>NQL:@Model.Ma_NQL</div>
+            <div>NSD:@Model.Ma_NSD</div>
+        </div>
+    </div>
+</div>

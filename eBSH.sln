@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBSH", "ebsh\eBSH.csproj", "{A20BB363-F659-4CB0-891E-A6E1091D0D8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A20BB363-F659-4CB0-891E-A6E1091D0D8A}.Release|x86.Build.0 = Release|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Debug|x86.Build.0 = Debug|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Release|x86.ActiveCfg = Release|Any CPU
+		{2324BDB4-3BA9-4E43-97BA-914C391A3CA3}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

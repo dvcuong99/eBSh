@@ -1,0 +1,63 @@
+﻿@model eBSH.Models.CN_PA_GCN
+@{
+    ViewBag.Title = "Chi tiết đơn";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12">
+    <div class="col-lg-3">
+        <h4>Thông tin đơn</h4>
+        <p>Số ID: @Model.So_ID </p>
+        <p>Số HD: @Model.So_HD </p>
+        <p>Hiệu Lực: @Model.Ngay_HL đến @Model.Ngay_KT</p>
+        <p>CTBH: @Model.CTBH</p>
+        <p>Tên khách hàng: @Model.KhachHang</p>
+        <p>CMND: @Model.CMND</p>
+        <p>Phone: @Model.Phone</p>
+        <p>Email: @Model.Email</p>
+
+    </div>
+    <div class=" col-lg-9">
+        <h4>Thông tin người được bảo hiểm</h4>
+        <div class="single-table">
+            <div class="table-responsive">
+                <table class="table progress-table" id="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ Tên</th>
+                            <th>Quan hệ</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh</th>
+                            <th>CMND</th>
+                            <th>Phi</th>
+                            <th>Tiền BH</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var i = 1;}
+                        @foreach (var item in Model.DS_NBH)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.HoTen</td>
+                                <td>@item.QH</td>
+                                <td>
+                                    @if (item.GioiTinh == "0")
+                                    {<p>Nam</p>}
+                                    else
+                                    {<p>Nữ</p>}
+
+                                </td>
+                                <td>@item.NgSinh</td>
+                                <td>@item.CMND</td>
+                                <td>@item.Phi_BH.ToString("#,##0") VND</td>
+                                <td>@item.Tien_BH.ToString("#,##0") VND</td>
+                            </tr>
+                            i = i + 1;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

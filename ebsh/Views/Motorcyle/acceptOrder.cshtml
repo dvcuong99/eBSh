@@ -1,0 +1,142 @@
+﻿@model eBSH.Models.McOrderVM
+@{
+    ViewBag.Title = "Xác nhận thông tin";
+    Layout = "~/Views/Shared/_MotorcyleLayout.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="col-xs-3 bs-wizard-step complete">
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-green-active">Đăng ký</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step active">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active">Xác nhận </span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Thanh toán </span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- active -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Nhận e-policy </span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="box box-default col-md-12">
+    @using (Html.BeginForm("acceptOrder", "motorcyle"))
+    {
+        <div class="row">
+            @Html.AntiForgeryToken()
+            <div class="col-md-12">
+                <div>
+                    <h3 class="text-orange">
+                        THÔNG TIN GIẤY CHỨNG NHẬN BẢO HIỂM XE MÔ TÔ – XE MÁY
+                    </h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.mcInf.so_id)
+                    @Html.HiddenFor(m => m.orderInf.PolicyID)
+                    @Html.HiddenFor(m => m.mcInf.ma_bh)
+                    @Html.HiddenFor(m => m.mcInf.ma_dvi)
+                    @Html.HiddenFor(m => m.orderInf.Amount)
+                    @Html.HiddenFor(m => m.orderInf.OrderDescription)
+                    <div>
+                        <label class="text-blue">THÔNG TIN CHUNG VỀ XE MÔ TÔ – XE MÁY</label>
+                        <div class="">
+                            <div><b>Chủ xe:</b> @Model.mcInf.ten</div>
+                            <div><b>Địa chỉ: </b> @Model.mcInf.dchi</div>
+                            <div><b>Số điện thoại: </b> @Model.mcInf.dien_thoai</div>
+                            <div><b>Biển kiểm soát: </b> @Model.mcInf.bien_xe</div>
+                            <div><b>Loại xe: </b></div>
+                            <div><b>Nhãn hiệu xe: </b> @Model.mcInf.hieu_xe</div>
+                            <div><b>Số khung: </b> @Model.mcInf.so_khung</div>
+                            <div><b>Số máy: </b> @Model.mcInf.so_may</div>
+                            <div><b>Email: </b> @Model.mcInf.email</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-blue">BẢO HIỂM BẮT BUỘC TRÁCH NHIỆM DÂN SỰ CỦA CHỦ XE</label>
+                        <div>
+                            <label class="text-blue">1. Mức TNDS đối với người thứ ba</label>
+                            <div><b>Về người</b> : 150 triệu đồng/1 người/1 vụ</div>
+                            <div><b>Về tài sản</b> : 50 triệu đồng/1 người/1 vụ</div>
+                        </div>
+                        <div>
+                            <label class="text-blue">2. Thời hạn bảo hiểm</label>
+                            <div>
+                                <div>Từ @Model.mcInf.gio_hl ngày @Model.mcInf.ngay_hl</div>
+                                <div>Đến @Model.mcInf.gio_kt ngày @Model.mcInf.ngay_kt</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-blue">3. Phí bảo hiểm (bao gồm VAT): @Model.mcInf.phibh_ds.ToString("#,##0") VND</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group material_input_block">
+                    <label class="text-blue">Tiền BH về tài sản</label>
+                    <div>
+                        @if (Model.mcInf.tienbh_nn == 0)
+                        {
+                            <label class="text-blue">1. Tai nạn người ngồi trên xe</label><label class="text-red"> - Không tham gia</label>
+                            <div><b>Số người ngồi trên xe:</b></div>
+                            <div><b>Mức trách nhiệm:</b></div>
+                            <div><b>Phí bảo hiểm:</b></div>
+                        }
+                        else
+                        {
+                            <label class="text-blue">1. Tai nạn người ngồi trên xe</label>
+                            <div><b>Số người ngồi trên xe: </b>@Model.mcInf.so_cn người</div>
+                            <div><b>Mức trách nhiệm: </b>@Model.mcInf.tienbh_nn.ToString("#,##0") VND</div>
+                            <div><b>Phí bảo hiểm: </b>@Model.mcInf.phibh_nn.ToString("#,##0") VND</div>
+                        }
+
+                    </div>
+                    <div>
+                        <label class="text-blue">2. Thiệt hại vật chất xe (chỉ bảo hiểm cho tổn thất toàn bộ xe)</label> <label class="text-red"> - Không tham gia</label>
+                        <div><b>Giá trị xe khai báo:</b></div>
+                        <div><b>Số tiền bảo hiểm theo yêu cầu:</b></div>
+                        <div><b>Hiệu xe:</b></div>
+                        <div><b>Năm sản xuất:</b></div>
+                        <div><b>Rủi ro được bảo hiểm:</b></div>
+                        <div><b>Mức khẩu trừ:</b></div>
+                        <div><b>Phí bảo hiểm (bao gồm VAT) : </b></div>
+                    </div>
+                    <div>
+                        <label class="text-blue">3. Thời hạn bảo hiểm</label>
+                        <div>
+                            <div>Từ @Model.mcInf.gio_hl ngày @Model.mcInf.ngay_hl</div>
+                            <div>Đến @Model.mcInf.gio_kt ngày @Model.mcInf.ngay_kt</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-blue">4. Tổng phí tự nguyện : @Model.mcInf.phibh_nn.ToString("#,##0") VND</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <input type="submit" name="btnPay" value="Xác nhận" id="btnPay" class="btn btn-primary">
+            <a class="btn btn-default" href="@Url.Action("regorder", "Motorcyle")">Quay lại</a>
+
+        </div>
+    }
+</div>

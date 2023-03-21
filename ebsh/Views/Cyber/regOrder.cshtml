@@ -1,0 +1,475 @@
+﻿@model eBSH.Models.PHH_CBS_GCN
+
+@{
+    Layout = "~/Views/Shared/_CyberLayout.cshtml";
+    ViewBag.Title = "Yêu cầu tham gia bảo hiểm";
+}
+<div class="row">
+    <div class="col-xs-12 col-md-9">
+        <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="col-xs-3 bs-wizard-step active">
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active"> Đăng ký</span> </div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Xác nhận</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Thanh toán</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- active -->
+                <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Nhận e-policy</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        @using (Html.BeginForm("regorder", "cyber"))
+            {
+            @Html.AntiForgeryToken()
+            <div class="box box-default">
+                <div class="box-body">                    
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <img src="../Content/img/Titan.jpg" id="imgCTBH" class="img-responsive" alt="ctbh" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label class="text-red"> @ViewBag.Message</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-warning">
+                                <label>
+                                    Mức bảo vệ:
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                @Html.RadioButtonFor(model => model.MTNBH, "XL", new { htmlAttributes = new { @class = "form-control" } })
+                                <div style="margin-left:30px">
+                                    <img src="../Content/img/ctbh/titan_xl.png" id="imgCTBH_XL" class="img-responsive" alt="photo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                @Html.RadioButtonFor(model => model.MTNBH, "M", new { htmlAttributes = new { @class = "form-control" } })
+                                <div style="margin-left:30px">
+                                    <img src="../Content/img/ctbh/titan_m.png" id="imgCTBH_M" class="img-responsive" alt="photo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-yellow"> Phí bảo hiểm (bao gồm VAT): </label>
+                                @Html.HiddenFor(m => m.PHIBH)
+                                <h4 class="description-header text-green">
+                                    <label id="lblPhiBH"> @Model.PHIBH.ToString("#,##0") VNĐ</label>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Mã Khuyến mại (nếu có)</label>
+                                @Html.EditorFor(model => model.CODE_KM, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CODE_KM, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="box box-default">
+                <div class="box-body">
+                    <div class="row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="text-yellow">Người được bảo hiểm</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.HO_TH, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ" } })
+                                @Html.ValidationMessageFor(model => model.HO_TH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="color: white">  -   </label>
+                                @Html.EditorFor(model => model.TEN_TH, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên" } })
+                                @Html.ValidationMessageFor(model => model.TEN_TH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-yellow">Địa chỉ</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.DCHIKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DCHIKH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Số CMND/ Hộ chiếu/ Căn cước</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.SO_CC, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SO_CC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Ngày cấp CMND/ Hộ chiếu/ Căn cước</label><span class="text-danger"> *</span>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right datepicker" name="NG_CAPCC" id="NG_CAPCC" value="@Model.NG_CAPCC" data-date-format="dd/mm/yyyy" data-date-end-date="0d">
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NG_CAPCC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Nơi cấp CMND/ Hộ chiếu/ Căn cước</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.NOI_CAPCC, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NOI_CAPCC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Email</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Điện thoại</label>
+                                @Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Số tài khoản</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.SO_TK, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SO_TK, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Ngân hàng</label><span class="text-danger"> *</span>
+                                @Html.EditorFor(model => model.NGAN_HANG, new { htmlAttributes = new { @class = "form-control", @list = "list" } })
+                                <datalist id="list">
+                                    <option value="Ngân hàng Ngoại thương Việt Nam - Vietcombank"></option>
+                                    <option value="Ngân hàng Công Thương Việt Nam - VietinBank"></option>
+                                    <option value="Ngân hàng Đầu tư và Phát triển Việt Nam - BIDV"></option>
+                                    <option value="Ngân hàng Nông nghiệp và Phát triển Nông thôn VN - Agribank"></option>
+                                    <option value="Ngân hàng Á Châu - ACB"></option>
+                                    <option value="Ngân hàng Đông Á - Dong A Bank"></option>
+                                    <option value="Ngân hàng Đông Nam Á - SeABank"></option>
+                                    <option value="Ngân hàng An Bình - ABBANK"></option>
+                                    <option value="Ngân hàng Bắc Á - BacABank"></option>
+                                    <option value="Ngân hàng Bản Việt - VietCapitalBank"></option>
+                                    <option value="Ngân hàng Hàng Hải Việt Nam - MSB"></option>
+                                    <option value="Ngân hàng Kỹ Thương Việt Nam - Techcombank"></option>
+                                    <option value="Ngân hàng Kiên Long - KienLongBank"></option>
+                                    <option value="Ngân hàng Nam Á - Nam A Bank"></option>
+                                    <option value="Ngân hàng Quốc Dân - NCB"></option>
+                                    <option value="Ngân hàng Việt Nam Thịnh Vượng - VPBank"></option>
+                                    <option value="Ngân hàng Phát triển nhà Thành phố Hồ Chí Minh - HDBank"></option>
+                                    <option value="Ngân hàng Phương Đông - OCB"></option>
+                                    <option value="Ngân hàng Quân đội - MB"></option>
+                                    <option value="Ngân hàng Đại chúng - PVcombank"></option>
+                                    <option value="Ngân hàng Quốc tế - VIB"></option>
+                                    <option value="Ngân hàng Sài Gòn - SCB"></option>
+                                    <option value="Ngân hàng Sài Gòn Công Thương - Saigonbank"></option>
+                                    <option value="Ngân hàng Sài Gòn-Hà Nội - SHB"></option>
+                                    <option value="Ngân hàng Sài Gòn Thương Tín - Sacombank"></option>
+                                    <option value="Ngân hàng Tiên Phong - TPBank"></option>
+                                    <option value="Ngân hàng Việt Á - VietABank"></option>
+                                    <option value="Ngân hàng Bảo Việt - Bao Viet Bank"></option>
+                                    <option value="Ngân hàng Việt Nam Thương Tín - VietBank"></option>
+                                    <option value="Ngân hàng Xăng dầu Petrolimex - PG Bank"></option>
+                                    <option value="Ngân hàng Xuất Nhập khẩu Việt Nam - Eximbank"></option>
+                                    <option value="Ngân hàng Bưu điện Liên Việt - LienVietPostBank"></option>
+                                    <option value="Ngân hàng Xây dựng - CB"></option>
+                                    <option value="Ngân hàng Đại Dương - Oceanbank"></option>
+                                    <option value="Ngân hàng Dầu Khí Toàn Cầu - GPBank"></option>
+                                    <option value="Ngân hàng Chính sách xã hội"></option>
+                                    <option value="Ngân hàng Phát triển Việt Nam"></option>
+                                    <option value="Ngân hàng Citibank Việt Nam"></option>
+                                    <option value="Ngân hàng TNHH một thành viên HSBC (Việt Nam)"></option>
+                                    <option value="Ngân hàng TNHH MTV Shinhan Việt Nam"></option>
+                                    <option value="Ngân hàng Standard Chartered Việt Nam"></option>
+                                    <option value="Ngân hàng TNHH Indovina"></option>
+                                    <option value="Ngân hàng Việt – Nga"></option>
+                                    <option value="Ngân hàng Woori tại Việt Nam"></option>
+                                    <option value="Ngân hàng Hong Leong Việt Nam"></option>
+                                </datalist>
+                                @Html.ValidationMessageFor(model => model.NGAN_HANG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Ngày bắt đầu hiệu lực bảo hiểm</label><span class="text-danger"> *</span>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right datepicker" name="NGAY_HL" id="NGAY_HL" value="@Model.NGAY_HL" data-date-format="dd/mm/yyyy" data-date-start-date="0d">
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NGAY_HL, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-yellow">Ngày hết hiệu lực bảo hiểm</label><span class="text-danger"> *</span>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="NGAY_KT" id="NGAY_KT" value="@Model.NGAY_KT" data-date-format="dd/mm/yyyy" readonly>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NGAY_KT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="checkbox" id="termsChkbx" />
+                            <div style="margin-left:30px">
+                                Tôi cam đoan những thông tin trên là hoàn toàn đúng sự thật và đồng ý Giấy yêu cầu bảo hiểm này là cơ sở để BSH phát hành Giấy chứng nhận bảo hiểm.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.HiddenFor(m => m.SO_ID)
+                            @Html.HiddenFor(m => m.CTBH)
+                            @Html.HiddenFor(m => m.TT)
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <input type="submit" id="regIns" value="Đăng ký" disabled class="btn btn-primary pull-left" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        function ddmmyyyy_to_mmddyyyy(theDate) {
+            strSeparator = ""
+            if (theDate.indexOf("/") != -1) strSeparator = "/";
+            if (theDate.indexOf("-") != -1) strSeparator = "-";
+            if (theDate.indexOf(".") != -1) strSeparator = ".";
+            if (strSeparator == "")
+                return "";
+            parts = theDate.split(strSeparator);
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+            return month + strSeparator + day + strSeparator + year.substr(0, 4);
+
+        }
+        function dateCompare(p_str_date1, p_str_date2) {
+            date1 = new Date(ddmmyyyy2mmddyyyy(p_str_date1));
+            date2 = new Date(ddmmyyyy2mmddyyyy(p_str_date2));
+            //alert(Math.floor((date2.getTime() - date1.getTime())/(1000*60*60*24)));
+            return Math.floor((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+        }
+
+        function CheckIDCardIssuedDate(IDdate) {
+            var vCurrentDate = new Date();
+            var idDate = new Date(ddmmyyyy_to_mmddyyyy(IDdate));
+
+            var fromYear = idDate.getFullYear();
+            var toYear = cDate.getFullYear();
+            var fromMonth = idDate.getMonth();
+            var toMonth = cDate.getMonth();
+
+            var year = toYear - fromYear;
+            var month = toMonth - fromMonth;
+            var diffMonth = year * 12 + month;
+            if (diffMonth > 180) {
+                $("#NG_CAPCC").prop('value', '');
+                alert('Ngày cấp CMT/HC/CCCD tối đa không quá 15 năm ');
+                return;
+            }
+        }
+
+        function CheckValidDate(IDdate) {
+            var vCurrentDate = new Date();
+            var cDate = new Date(ddmmyyyy_to_mmddyyyy(vCurrentDate));
+            var idDate = new Date(ddmmyyyy_to_mmddyyyy(IDdate));
+
+            var fromYear = idDate.getFullYear();
+            var toYear = cDate.getFullYear();
+            var fromMonth = idDate.getMonth();
+            var toMonth = cDate.getMonth();
+
+            var year = toYear - fromYear;
+            var month = toMonth - fromMonth;
+            var diffMonth = year * 12 + month;
+            if (diffMonth > 180) {
+                $("#NG_CAPCC").prop('value', '');
+                alert('Ngày cấp CMT/HC/CCCD tối đa không quá 15 năm ');
+                return;
+            }
+        }
+
+        function GetToDate(date1) {
+            var fromDate = new Date(ddmmyyyy_to_mmddyyyy(date1));
+            var d = new Date(fromDate);
+            d.setYear(d.getFullYear() + 1);
+            d.setDate(d.getDate() - 1);
+            var newdate = (d.getDate() < 10 ? '0' : '') + d.getDate() + '/' + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + '/' + d.getFullYear();
+            return newdate;
+        }
+
+        $(document).ready(function () {
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'icheckbox_flat-orange',
+                increaseArea: '20%' // optional
+            });
+
+            var ct = $('input#CTBH').val();
+            switch (ct) {
+                case 'Platinum':
+                    $("#imgCTBH").prop('src', '../Content/img/Platinum.jpg');
+                    $("#imgCTBH_XL").prop('src', '../Content/img/ctbh/platinum_xl.png');
+                    $("#imgCTBH_M").prop('src', '../Content/img/ctbh/platinum_m.png');
+                    $("#imgCTBH_S").prop('src', '../Content/img/ctbh/platinum_s.png');
+                    break;
+                case 'Gold':
+                    $("#imgCTBH").prop('src', '../Content/img/Gold.jpg');
+                    $("#imgCTBH_XL").prop('src', '../Content/img/ctbh/gold_xl.png');
+                    $("#imgCTBH_M").prop('src', '../Content/img/ctbh/gold_m.png');
+                    $("#imgCTBH_S").prop('src', '../Content/img/ctbh/gold_s.png');
+                    break;
+                default:
+                    $("#imgCTBH").prop('src', '../Content/img/Titan.jpg');
+                    $("#imgCTBH_XL").prop('src', '../Content/img/ctbh/titan_xl.png');
+                    $("#imgCTBH_M").prop('src', '../Content/img/ctbh/titan_m.png');
+                    $("#imgCTBH_S").prop('src', '../Content/img/ctbh/titan_s.png');
+                    break;
+            }
+            $('input[name="MTNBH"]').on('ifClicked', function (event) {
+                var mtn = this.value;
+                switch (ct) {
+                    case 'Platinum':
+                        switch (mtn) {
+                            case 'XL':
+                                $("#PHIBH").prop('value', '990000');
+                                $("#lblPhiBH").html('990.000 VNĐ');
+                                break;
+                            case 'M':
+                                $("#PHIBH").prop('value', '720000');
+                                $("#lblPhiBH").html('720.000 VNĐ');
+                                break;
+                            default:
+                                $("#PHIBH").prop('value', '720000');
+                                $("#lblPhiBH").html('720.000 VNĐ');
+                                break;
+                        }
+                        break;
+                    case 'Gold':
+                        switch (mtn) {
+                            case 'XL':
+                                $("#PHIBH").prop('value', '560000');
+                                $("#lblPhiBH").html('560.000 VNĐ');
+                                break;
+                            case 'M':
+                                $("#PHIBH").prop('value', '410000');
+                                $("#lblPhiBH").html('410.000 VNĐ');
+                                break;
+                            default:
+                                $("#PHIBH").prop('value', '410000');
+                                $("#lblPhiBH").html('410.000 VNĐ');
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (mtn) {
+                            case 'XL':
+                                $("#PHIBH").prop('value', '400000');
+                                $("#lblPhiBH").html('400.000 VNĐ');
+                                break;
+                            case 'M':
+                                $("#PHIBH").prop('value', '290000');
+                                $("#lblPhiBH").html('290.000 VNĐ');
+                                break;
+                            default:
+                                $("#PHIBH").prop('value', '290000');
+                                $("#lblPhiBH").html('290.000 VNĐ');
+                                break;
+                        }
+                        break;
+                }
+            });
+
+
+            $('#TYPE').on('ifChecked', function (event) {
+                $("#tenviText").prop('disabled', false);
+            });
+
+            $('#TYPE').on('ifUnchecked', function (event) {
+                $("#tenviText").prop('disabled', true);
+                $("#tenviText").prop('value', '');
+            });
+
+            $('#termsChkbx').on('ifChecked', function (event) {
+                $("#regIns").prop('disabled', false);
+            });
+
+            $('#termsChkbx').on('ifUnchecked', function (event) {
+                $("#regIns").prop('disabled', true);
+            });
+
+            $('#NGAY_HL').change(function (event) {
+                $("#NGAY_KT").prop('value', GetToDate(this.value));
+            });
+
+        });
+    </script>
+}

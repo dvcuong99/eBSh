@@ -1,0 +1,111 @@
+﻿@model eBSH.Models.GiftCode
+@{
+    ViewBag.Title = "Thêm mới thẻ khuyến mại";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("Create", "GiftCodeManage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="box col-md-12">
+        <h3>Thông tin thẻ khuyến mại</h3><br />
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Mã khuyến mại</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.CodeKM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.CodeKM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Mã BH</label>
+                <div class=" col-md-8">
+                    @Html.DropDownList("MA_BH", new SelectList(ViewBag.ListMaBH, "MaBH", "BHName"), new { @class = "form-control dropdown" })
+                    @Html.ValidationMessageFor(m => m.Ma_BH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Chương trình BH</label>
+                <div class=" col-md-8">
+                    @Html.DropDownList("CTBH", new SelectList(ViewBag.ListCTBH, "CTBH", "CTBHName"), new { @class = "form-control dropdown" })
+                    @Html.ValidationMessageFor(m => m.CTBH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Mức TN</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.MTN, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Kênh KT</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.KENH_KT, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">NQL</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.Ma_NQL, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">NSD</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.Ma_NSD, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Tỷ lệ khuyến mại</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.TLKM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.TLKM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Hiệu lực</label>
+                <div class=" col-md-3">
+                    <div id="datepicker-group" class="input-group date" data-date-format="dd/mm/yyyy">
+                        @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", @placeholder = "dd/MM/yyyy" })
+                    </div>
+                </div>
+                <div class=" col-md-1">
+                    <label class="control-label">đến</label>
+                </div>
+                <div class=" col-md-4">
+                    <div id="datepicker-group" class="input-group date" data-date-format="dd/mm/yyyy">
+                        @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", @placeholder = "dd/MM/yyyy" })
+                    </div>
+                </div>
+                <div class=" col-md-12">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4"></label>
+                <div class=" col-md-8">
+                    @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })<br />
+                    @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Số lượng</label>
+                <div class=" col-md-8">
+                    @Html.EditorFor(model => model.AmountKM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.AmountKM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-4"></div>
+                <div class=" col-md-8">
+                    <input type="submit" value="Thêm thẻ KM" class="btn btn-flat btn-primary" />
+                    <div class="text-danger">@ViewBag.Message</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

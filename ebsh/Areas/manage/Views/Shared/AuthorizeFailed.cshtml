@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Cảnh báo";
+    Layout = "~/Areas/manage/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<div class="error-area ptb--10 text-center">
+    <div class="container">
+        <div class="error-content">
+            <h3 style="color:red">Cảnh báo:</h3>
+            <p>@ViewData["Message"]</p>
+            @Html.ActionLink("Quay Lại", "Index", "Home")
+        </div>
+    </div>
+</div>
+

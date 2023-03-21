@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.Title = "eBSH";
+    ViewBag.Description = "BSH";
+}
+<section class="content-header">
+    <h1>
+        <small>e</small>BSH        
+    </h1>
+    <!--ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Layout</a></li>
+        <li class="active">Top Navigation</li>
+    </ol>-->
+</section>
+<section class="container body-content">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/TNDSBB_XeMay.jpg" alt="TNDS">
+
+                    <h3 class="profile-username text-center">Bảo hiểm xe máy - mô tô</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Bảo hiểm TNDS bắt buộc</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Bảo hiểm người ngồi trên xe</b>
+                        </li>
+
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "Motorcyle", new { refcode=@ViewBag.RefCode})" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/bao-hiem-o-to-bsh.jpg" alt="TNDS">
+
+                    <h3 class="profile-username text-center">Bảo hiểm xe cơ giới</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Bảo hiểm TNDS bắt buộc</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Bảo hiểm người ngồi trên xe</b>
+                        </li>
+
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "MotorVehicle", new { refcode=@ViewBag.RefCode})" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/Topcare.png" alt="topcare">
+
+                    <h3 class="profile-username text-center">Diamond</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm sức khỏe</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Quyền lợi đến 100.000.000<sup class="currency">đ</sup></b>
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "topcare", new { type = "Diamond" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-warning">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/Topcare.png" alt="topcare">
+
+                    <h3 class="profile-username text-center">Platinum</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm sức khỏe</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Quyền lợi đến 50.000.000<sup class="currency">đ</sup></b>
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "topcare", new { type = "Platinum" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/Topcare.png" alt="topcare">
+
+                    <h3 class="profile-username text-center">Gold</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm sức khỏe</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Quyền lợi đến 30.000.000<sup class="currency">đ</sup></b>
+                        </li>
+
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "topcare", new { type = "Gold" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/cyberguard.png" alt="cyberguard">
+
+                    <h3 class="profile-username text-center">Platinum</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm các quyền lợi</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Giao dịch giả mạo (U)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Lừa đảo bán lẻ trực tuyến (O)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Tống tiền qua mạng (C)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Trộm cắp danh tính (I)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Chi phí phục hồi (R)</b>
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "cyber", new { type = "Platinum" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-warning">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/cyberguard.png" alt="cyberguard">
+
+                    <h3 class="profile-username text-center">Gold</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm các quyền lợi</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Giao dịch giả mạo (U)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Lừa đảo bán lẻ trực tuyến (O)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Tống tiền qua mạng (C)</b>
+                        </li>
+                        <li class="list-group-item">
+                            -
+                        </li>
+                        <li class="list-group-item">
+                            -
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "cyber", new { type = "Gold" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="img-responsive pad" src="~/Content/img/cyberguard.png" alt="cyberguard">
+
+                    <h3 class="profile-username text-center">Silver</h3>
+
+                    <p class="text-muted text-center">Bảo hiểm các quyền lợi</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Giao dịch giả mạo (U)</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Lừa đảo bán lẻ trực tuyến (O)</b>
+                        </li>
+                        <li class="list-group-item">
+                            -
+                        </li>
+                        <li class="list-group-item">
+                            -
+                        </li>
+                        <li class="list-group-item">
+                            -
+                        </li>
+                    </ul>
+
+                    <a href="@Url.Action("regorder", "cyber", new { type = "Silver" })" class="btn btn-warning btn-block"><b>Đăng ký</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    
+</section>

@@ -1,0 +1,52 @@
+﻿@using eBSH.Models
+@model LoginViewModel
+@{
+    Layout = "~/Areas/manage/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Đăng nhập";
+}
+<div class="login-box ptb--100">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="login-form-head">
+            <h4>Đăng nhập hệ thống</h4>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        <div class="login-form-body">
+            <div class="form-group">
+                <label class="col-form-label" for="Email">Email:</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-primary" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Password">Mật khẩu:</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-primary" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="row mb-4 rmber-area">
+                <div class="col-6">
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                        @Html.LabelFor(m => m.RememberMe, new { @class = "custom-control-label" })
+                    </div>
+                </div>  
+                <div class="col-6 text-right">
+                    @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
+                </div>
+            </div>
+        </div>
+        <div class="submit-btn-area">
+            <button id="form_submit" type="submit" class="btn btn-primary btn-lg btn-block">Login <i class="ti-arrow-right"></i></button>
+        </div>
+
+        @* Enable this once you have account confirmation enabled for password reset functionality
+
+            <div class="col-md-4">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>
+        *@
+    }
+</div>

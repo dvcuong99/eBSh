@@ -1,0 +1,702 @@
+﻿
+@model eBSH.Models.CN_PA_GCN_VM
+
+@{
+    Layout = "~/Views/Shared/_TopCareLayout.cshtml";
+    ViewBag.Title = "Yêu cầu tham gia bảo hiểm";
+}
+<div class="row">
+    <div class="row bs-wizard" style="border-bottom:0;">
+        <div class="col-xs-3 bs-wizard-step active">
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active"> Đăng ký</span> </div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Xác nhận</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Thanh toán</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- active -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Nhận e-policy</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <img src="../Content/img/topcare_diamond.png" id="imgCTBH" class="img-responsive" alt="ctbh" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="tabbable-panel">
+            <!-- Tab Buttons -->
+            <div class="tabbable-line">
+                <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#_FirstTab" role="tab" data-toggle="tab">Đăng ký tham gia BH</a>
+                    </li>
+                    <li>
+                        <a href="#_SecondTab" role="tab" data-toggle="tab">Chương trình BH</a>
+                    </li>
+                    <li>
+                        <a href="https://bshc.com.vn/ca-nhan/bao-hiem-suc-khoe-topcare" target="_blank" role="tab">Quy tắc bảo hiểm</a>
+                    </li>
+                </ul>
+
+                <!-- Tab Content Containers -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="_FirstTab">
+                        @using (Html.BeginForm("regorder", "topcare"))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="box box-default">
+                                <div class="box-body">
+                                    @Html.HiddenFor(m => m.CTBH)
+                                    @Html.HiddenFor(m => m.So_ID)
+                                    @Html.HiddenFor(m => m.TT)
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Mã Khuyến mại (nếu có)</label>
+                                                @Html.EditorFor(model => model.CODE_KM, new { htmlAttributes = new { @class = "form-control input-sm material_input" }, @style = "text-transform:uppercase ;" })
+                                                @Html.ValidationMessageFor(model => model.CODE_KM, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="text-red"> @ViewBag.Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Người mua bảo hiểm</label><span class="text-danger"> *</span>
+                                                @Html.EditorFor(model => model.KhachHang, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Tên khách hàng" } })
+                                                @Html.ValidationMessageFor(model => model.KhachHang, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Địa chỉ</label><span class="text-danger"> *</span>
+                                                @Html.EditorFor(model => model.DChi, new { htmlAttributes = new { @class = "form-control input-sm material_input" } })
+                                                @Html.ValidationMessageFor(model => model.DChi, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Số CMND/ Hộ chiếu/ Căn cước</label><span class="text-danger"> *</span>
+                                                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control input-sm material_input" } })
+                                                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Email</label><span class="text-danger"> *</span>
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-sm material_input" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Điện thoại</label>
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control input-sm material_input" } })
+                                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Thời hạn</label><span class="text-danger"> *</span>
+                                                @Html.DropDownListFor(model => model.ThoiHan, new SelectList(Model.lsThoiHan, "ID", "TH"), new { @class = "form-control input-sm material_input" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Ngày bắt đầu hiệu lực bảo hiểm</label><span class="text-danger"> *</span>
+                                                <input type="text" class="form-control input-sm datepicker material_input" name="NGAY_HL" id="NGAY_HL" value="@Model.Ngay_HL" data-date-format="dd/mm/yyyy" data-date-start-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                @Html.ValidationMessageFor(model => model.Ngay_HL, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group material_input_block">
+                                                <label class="text-yellow">Ngày hết hiệu lực bảo hiểm</label><span class="text-danger"> *</span>
+                                                <input type="text" class="form-control input-sm material_input" name="NGAY_KT" id="NGAY_KT" value="@Model.Ngay_KT" data-date-format="dd/mm/yyyy" readonly>
+                                                @Html.ValidationMessageFor(model => model.Ngay_KT, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-yellow">Danh sách người được bảo hiểm</label><span class="text-danger"> *</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <table id="tbllist " class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="col-md-2" style="text-align:center">
+                                                                <b>Quan hệ</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                            <td class="col-md-3" style="text-align:center">
+                                                                <b>Họ tên</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                            <td class="col-md-2" style="text-align:center">
+                                                                <b>Ngày sinh</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                            <td class="col-md-2" style="text-align:center">
+                                                                <b>Giới tính</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                            <td class="col-md-2" style="text-align:center">
+                                                                <b>Số Căn cước</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                            <td class="col-md-2" style="text-align:center">
+                                                                <b>Phí BH</b><span class="text-danger"> *</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.QH1, new SelectList(Model.lsQH, "ID", "QH"), new { @class = "form-control input-sm" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.HoTen1, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                                                @Html.ValidationMessageFor(model => model.HoTen1, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm datepicker" name="NgSinh1" id="NgSinh1" value="@Model.NgSinh1" data-date-format="dd/mm/yyyy" data-date-end-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.GioiTinh1, new SelectList(Model.lsGioiTinh, "ID", "GT"), new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.CMND1, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                            </td>
+                                                            <td align="right">
+                                                                <label id="lblPhiCT1">@Model.Phi_BHCT1.ToString("#,##0")</label>
+                                                                @Html.HiddenFor(model => model.Phi_BHCT1)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.QH2, new SelectList(Model.lsQH, "ID", "QH"), "Chọn", new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.HoTen2, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                                @Html.ValidationMessageFor(model => model.HoTen2, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm datepicker " name="NgSinh2" id="NgSinh2" value="@Model.NgSinh2" data-date-format="dd/mm/yyyy" data-date-end-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.GioiTinh2, new SelectList(Model.lsGioiTinh, "ID", "GT"), new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.CMND2, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                            </td>
+                                                            <td align="right">
+                                                                <label id="lblPhiCT2">@Model.Phi_BHCT2.ToString("#,##0")</label>
+                                                                @Html.HiddenFor(model => model.Phi_BHCT2)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.QH3, new SelectList(Model.lsQH, "ID", "QH"), "Chọn", new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.HoTen3, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                                @Html.ValidationMessageFor(model => model.HoTen3, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm datepicker " name="NgSinh3" id="NgSinh3" value="@Model.NgSinh3" data-date-format="dd/mm/yyyy" data-date-end-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.GioiTinh3, new SelectList(Model.lsGioiTinh, "ID", "GT"), new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.CMND3, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                            </td>
+                                                            <td align="right">
+                                                                <label id="lblPhiCT3">@Model.Phi_BHCT3.ToString("#,##0")</label>
+                                                                @Html.HiddenFor(model => model.Phi_BHCT3)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.QH4, new SelectList(Model.lsQH, "ID", "QH"), "Chọn", new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.HoTen4, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                                @Html.ValidationMessageFor(model => model.HoTen4, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm datepicker " name="NgSinh4" id="NgSinh4" value="@Model.NgSinh4" data-date-format="dd/mm/yyyy" data-date-end-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.GioiTinh4, new SelectList(Model.lsGioiTinh, "ID", "GT"), new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.CMND4, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                            </td>
+                                                            <td align="right">
+                                                                <label id="lblPhiCT4">@Model.Phi_BHCT4.ToString("#,##0")</label>
+                                                                @Html.HiddenFor(model => model.Phi_BHCT4)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.QH5, new SelectList(Model.lsQH, "ID", "QH"), "Chọn", new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.HoTen5, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                                @Html.ValidationMessageFor(model => model.HoTen5, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm datepicker " name="NgSinh5" id="NgSinh5" value="@Model.NgSinh5" data-date-format="dd/mm/yyyy" data-date-end-date="0d">
+                                                            </td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => model.GioiTinh5, new SelectList(Model.lsGioiTinh, "ID", "GT"), new { @class = "form-control input-sm " })
+                                                            </td>
+                                                            <td>
+                                                                @Html.EditorFor(model => model.CMND5, new { htmlAttributes = new { @class = "form-control input-sm " } })
+                                                            </td>
+                                                            <td align="right">
+                                                                <label id="lblPhiCT5">@Model.Phi_BHCT5.ToString("#,##0")</label>
+                                                                @Html.HiddenFor(model => model.Phi_BHCT5)
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-yellow"> Tổng phí bảo hiểm : </label>
+                                                @Html.HiddenFor(m => m.Phi_BH)
+                                                <label id="lblPhiBH" class="description-header text-green"> @Model.Phi_BH.ToString("#,##0") VNĐ</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="checkbox" id="termsChkbx" />
+                                            <div style="margin-left:30px">
+                                                Tôi đã đọc và nắm rõ <a href="https://bshc.com.vn/ca-nhan/bao-hiem-suc-khoe-topcare" target="_blank">Quy tắc bảo hiểm</a>. Tôi cam đoan những thông tin trên là hoàn toàn đúng sự thật và đồng ý Giấy yêu cầu bảo hiểm này là cơ sở để BSH phát hành Giấy chứng nhận bảo hiểm.
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.HiddenFor(m => m.So_ID)
+                                            @Html.HiddenFor(m => m.CTBH)
+                                            @Html.HiddenFor(m => m.TT)
+                                            <div class="col-md-offset-2 col-md-6">
+                                                <input type="submit" id="regIns" value="Đăng ký" disabled class="btn btn-primary pull-left" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="_SecondTab">
+                        <div class="box box-default">
+                            <p>
+                                <br /><strong>Điều kiện tham gia bảo hiểm</strong>: BSH nhận bảo hiểm cho các đối tượng là công dân Việt Nam, người nước ngoài đang cư trú hợp pháp tại Việt Nam có độ tuổi từ đủ 60 ngày tuổi đến 65 tuổi tại thời điểm bắt đầu thời hạn bảo hiểm của Hợp đồng bảo hiểm.
+
+                                <br />BSH không nhận bảo hiểm đối với các đối tượng sau:
+                                <ul>
+                                    <li>Người đang bị bệnh tâm thần, thần kinh, bệnh phong, ung thư.</li>
+                                    <li>Người bị thương tật vĩnh viễn quá 50%.</li>
+                                    <li>Người đang trong thời gian điều trị bệnh hoặc thương tật (chỉ áp dụng với người tham gia bảo hiểm lần đầu hoặc tái tục không liên tục).</li>
+                                </ul>
+                                Lưu ý: Trẻ em dưới 6 tuổi phải tham gia kèm bố/mẹ, chương trình của con giống chương trình của bố/mẹ và phải trên cùng một số Giấy chứng nhận bảo hiểm.
+                            </p>
+                            <table id="tbllist " class="table table-bordered table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-3" style="text-align:center">
+                                            <label class="text-yellow">Chương trình bảo hiểm</label>
+                                        </td>
+                                        <td class="col-md-3" style="text-align:center">
+                                            <label class="text-yellow" id="CT">Diamond</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Số tiền bảo hiểm
+                                        </td>
+                                        <td>
+                                            <label id="STBH">100,000,000</label> đồng/thời hạn BH
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Tử vong do tai nạn
+                                        </td>
+                                        <td>
+                                            Chi trả 100% số tiền bảo hiểm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thương tật toàn bộ vĩnh viễn do tai nạn
+                                        </td>
+                                        <td>
+                                            Chi trả <label id="TTTBTN">50%</label> số tiền bảo hiểm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thương tật bộ phận vĩnh viễn do tai nạn
+                                            (Chi trả theo tỷ lệ thương quy định tại bảng tỷ lệ thương tật với số tiền bảo hiểm)
+                                        </td>
+                                        <td>
+                                            Chi trả 50% số tiền bảo hiểm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Chi phí nằm viện do tai nạn và ốm đau bệnh tật(tối đa 90 ngày/năm)
+                                        </td>
+                                        <td>
+                                            Chi trả chi phí  y tế thực tế không quá <label id="CPYT">600,000</label> đồng/ngày, tối đa <label id="STYT">50,000,000</label> đồng/thời hạn bảo hiểm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Chi phí phẫu thuật do tai nạn và ốm đau bệnh tật
+                                        </td>
+                                        <td>
+                                            <label id="STPT">50,000,000</label> đồng/thời hạn BH
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Trợ cấp trong trường hợp tử vong liên quan đến ốm đau, bệnh tật tại cơ sở y tế theo yêu cầu các cơ quan có thẩm quyền
+                                        </td>
+                                        <td>
+                                            <label id="STTC">50,000,000</label> đồng/thời hạn BH
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function ddmmyyyy_to_mmddyyyy(theDate) {
+            strSeparator = ""
+            if (theDate.indexOf("/") != -1) strSeparator = "/";
+            if (theDate.indexOf("-") != -1) strSeparator = "-";
+            if (theDate.indexOf(".") != -1) strSeparator = ".";
+            if (strSeparator == "")
+                return "";
+            parts = theDate.split(strSeparator);
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+            return month + strSeparator + day + strSeparator + year.substr(0, 4);
+
+        }
+        function dateCompare(p_str_date1, p_str_date2) {
+            date1 = new Date(ddmmyyyy2mmddyyyy(p_str_date1));
+            date2 = new Date(ddmmyyyy2mmddyyyy(p_str_date2));
+            //alert(Math.floor((date2.getTime() - date1.getTime())/(1000*60*60*24)));
+            return Math.floor((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+        }
+
+        function CheckValidBirthDate(IDdate, toDate) {
+            var cDate = new Date(ddmmyyyy_to_mmddyyyy(toDate));
+            var idDate = new Date(ddmmyyyy_to_mmddyyyy(IDdate));
+
+            var fromYear = idDate.getFullYear();
+            var toYear = cDate.getFullYear();
+            var fromMonth = idDate.getMonth();
+            var toMonth = cDate.getMonth();
+
+            var year = toYear - fromYear;
+            var month = toMonth - fromMonth;
+            var diffMonth = year * 12 + month;
+            if (diffMonth > 780) {
+                alert('Người tham gia bảo hiểm không quá 65 tuổi');
+                return false;
+            }
+            else if (diffMonth < 2) {
+                alert('Người tham gia bảo hiểm phải trên 60 ngày tuổi');
+                return false;
+            }
+            else if (diffMonth = 2) {
+                var fromDay = idDate.getDay();
+                var toDay = cDate.getDay();
+                if (fromDay < toDate) {
+                    alert('Người tham gia bảo hiểm phải trên 60 ngày tuổi');
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            else {
+                return true;
+            }
+        }
+
+        function CheckValidDate(IDdate) {
+            var vCurrentDate = new Date();
+            var cDate = new Date(ddmmyyyy_to_mmddyyyy(vCurrentDate));
+            var idDate = new Date(ddmmyyyy_to_mmddyyyy(IDdate));
+
+            var fromYear = idDate.getFullYear();
+            var toYear = cDate.getFullYear();
+            var fromMonth = idDate.getMonth();
+            var toMonth = cDate.getMonth();
+
+            var year = toYear - fromYear;
+            var month = toMonth - fromMonth;
+            var diffMonth = year * 12 + month;
+            if (diffMonth > 180) {
+                $("#NG_CAPCC").prop('value', '');
+                alert('Ngày cấp CMT/HC/CCCD tối đa không quá 15 năm ');
+                return;
+            }
+        }
+
+        function GetToDate(date1, thoihan) {
+            var fromDate = new Date(ddmmyyyy_to_mmddyyyy(date1));
+            var d = new Date(fromDate);
+            d.setMonth(d.getMonth() + thoihan);
+            //d.setDate(d.getDate() - 1);
+            var newdate = (d.getDate() < 10 ? '0' : '') + d.getDate() + '/' + ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1) + '/' + d.getFullYear();
+            return newdate;
+        }
+
+        function TinhPhi(ngaysinh, ctbh, thoihan) {
+            var phi = 0;
+            var hl = $('input#NGAY_HL').val();
+            $.ajax({
+                type: "GET",
+                async: false,
+                dataType: "json",
+                url: "../TopCare/Premium?NgaySinh=" + ngaysinh + "&CTBH=" + ctbh + "&ThoiHan=" + thoihan + "&NgayHL=" + hl,
+                success: function (data) {
+                    phi = data.Phi;
+                }
+            });
+            return phi;
+        }
+        function TongPhi() {
+            var phi1 = parseInt($('input#Phi_BHCT1').val());
+            var phi2 = parseInt($('input#Phi_BHCT2').val());
+            var phi3 = parseInt($('input#Phi_BHCT3').val());
+            var phi4 = parseInt($('input#Phi_BHCT4').val());
+            var phi5 = parseInt($('input#Phi_BHCT5').val());
+            var tongphi = phi1 + phi2 + phi3 + phi4 + phi5;
+            $("#Phi_BH").prop('value', tongphi);
+            $("#lblPhiBH").text(tongphi.toLocaleString() + " VNĐ");
+            $("#lblPhiCT1").text(phi1.toLocaleString());
+            $("#lblPhiCT2").text(phi2.toLocaleString());
+            $("#lblPhiCT3").text(phi3.toLocaleString());
+            $("#lblPhiCT4").text(phi4.toLocaleString());
+            $("#lblPhiCT5").text(phi5.toLocaleString());
+        }
+        $(document).ready(function () {
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'icheckbox_flat-orange',
+                increaseArea: '20%' // optional
+            });
+
+            var ct = $('input#CTBH').val();
+            switch (ct) {
+                case 'Platinum':
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_platinum.png');
+                    $("#CT").text("Platinum");
+                    $("#STBH").text("50,000,000");
+                    $("#TTTBTN").text("100%");
+                    $("#CPYT").text("300,000");
+                    $("#STYT").text("25,000,000");
+                    $("#STPT").text("25,000,000");
+                    $("#STTC").text("25,000,000");
+                    break;
+                case 'Gold':
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_gold.png');
+                    $("#CT").text("Gold");
+                    $("#STBH").text("30,000,000");
+                    $("#TTTBTN").text("100%");
+                    $("#CPYT").text("200,000");
+                    $("#STYT").text("15,000,000");
+                    $("#STPT").text("15,000,000");
+                    $("#STTC").text("15,000,000");
+                    break;
+                default:
+                    ct = 'Diamond'
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_diamond.png');
+                    $("#CT").text("Diamond");
+                    $("#STBH").text("100,000,000");
+                    $("#TTTBTN").text("50%");
+                    $("#CPYT").text("600,000");
+                    $("#STYT").text("50,000,000");
+                    $("#STPT").text("50,000,000");
+                    $("#STTC").text("50,000,000");
+                    break;
+            }
+            $('#KhachHang').change(function (event) {
+                if ($('#QH1 :selected').val() == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+            });
+            $('#CMND').change(function (event) {
+                if ($('#QH1 :selected').val() == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+            });
+            $('#QH1').change(function (event) {
+                if (this.value == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+                else {
+                    $("#HoTen1").prop('value', '');
+                    $("#CMND1").prop('value', '');
+                }
+            });
+            $('#termsChkbx').on('ifChecked', function (event) {
+                $("#regIns").prop('disabled', false);
+            });
+
+            $('#termsChkbx').on('ifUnchecked', function (event) {
+                $("#regIns").prop('disabled', true);
+            });
+
+            $('#ThoiHan').change(function (event) {
+                var th = $('#ThoiHan :selected').val();
+                var hl = $('input#NGAY_HL').val();
+                switch (th) {
+                    case "3":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 3));
+                        break;
+                    case "6":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 6));
+                        break;
+                    case "12":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 12));
+                        break;
+                }
+                $("#Phi_BHCT1").prop('value', TinhPhi($('input#NgSinh1').val(), ct, th));
+                $("#Phi_BHCT2").prop('value', TinhPhi($('input#NgSinh2').val(), ct, th));
+                $("#Phi_BHCT3").prop('value', TinhPhi($('input#NgSinh3').val(), ct, th));
+                $("#Phi_BHCT4").prop('value', TinhPhi($('input#NgSinh4').val(), ct, th));
+                $("#Phi_BHCT5").prop('value', TinhPhi($('input#NgSinh5').val(), ct, th));
+                TongPhi();
+            });
+            $('#NGAY_HL').change(function (event) {
+                var th = $('#ThoiHan :selected').val();
+                switch (th) {
+                    case "3":
+                        $("#NGAY_KT").prop('value', GetToDate(this.value, 3));
+                        break;
+                    case "6":
+                        $("#NGAY_KT").prop('value', GetToDate(this.value, 6));
+                        break;
+                    case "12":
+                        $("#NGAY_KT").prop('value', GetToDate(this.value, 12));
+                        break;
+                }
+            });
+
+            $('#NgSinh1').change(function (event) {
+                if (CheckValidBirthDate(this.value, $('input#NGAY_HL').val())) {
+                    var th = $('#ThoiHan :selected').val();
+                    var phiBH = TinhPhi(this.value, ct, th);
+                    $("#Phi_BHCT1").prop('value', phiBH);
+                }
+                else {
+                    $("#NgSinh1").prop('value', '');
+                }
+                TongPhi();
+            });
+            $('#NgSinh2').change(function (event) {
+                if (CheckValidBirthDate(this.value, $('input#NGAY_HL').val())) {
+                    var th = $('#ThoiHan :selected').val();
+                    var phiBH = TinhPhi(this.value, ct, th);
+                    $("#Phi_BHCT2").prop('value', phiBH);
+                }
+                else {
+                    $("#NgSinh2").prop('value', '');
+                }
+                TongPhi();
+            });
+            $('#NgSinh3').change(function (event) {
+                if (CheckValidBirthDate(this.value, $('input#NGAY_HL').val())) {
+                    var th = $('#ThoiHan :selected').val();
+                    var phiBH = TinhPhi(this.value, ct, th);
+                    $("#Phi_BHCT3").prop('value', phiBH);
+                }
+                else {
+                    $("#NgSinh3").prop('value', '');
+                }
+                TongPhi();
+            });
+            $('#NgSinh4').change(function (event) {
+                if (CheckValidBirthDate(this.value, $('input#NGAY_HL').val())) {
+                    var th = $('#ThoiHan :selected').val();
+                    var phiBH = TinhPhi(this.value, ct, th);
+                    $("#Phi_BHCT4").prop('value', phiBH);
+                }
+                else {
+                    $("#NgSinh4").prop('value', '');
+                }
+                TongPhi();
+            });
+            $('#NgSinh5').change(function (event) {
+                if (CheckValidBirthDate(this.value, $('input#NGAY_HL').val())) {
+                    var th = $('#ThoiHan :selected').val();
+                    var phiBH = TinhPhi(this.value, ct, th);
+                    $("#Phi_BHCT5").prop('value', phiBH);
+                }
+                else {
+                    $("#NgSinh5").prop('value', '');
+                }
+                TongPhi();
+            });
+        });
+    </script>
+}

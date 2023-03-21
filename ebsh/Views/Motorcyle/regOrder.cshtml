@@ -1,0 +1,466 @@
+﻿
+@model eBSH.Models.Motorcycle
+
+@{
+    Layout = "~/Views/Shared/_MotorcyleLayout.cshtml";
+    ViewBag.Title = "Yêu cầu tham gia bảo hiểm";
+}
+
+<div class="row">
+    <div class="row bs-wizard" style="border-bottom:0;">
+        <div class="col-xs-3 bs-wizard-step active">
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-yellow-active"> Đăng ký</span> </div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Xác nhận</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- complete -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Thanh toán</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step disabled">
+            <!-- active -->
+            <div class="text-center bs-wizard-stepnum"><span class="badge bg-gray">Nhận e-policy</span></div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+    </div>
+</div>
+<div class="tabbable-panel">
+    <!-- Tab Buttons -->
+    <div class="tabbable-line">
+        <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+            <li class="active">
+                <a href="#_FirstTab" role="tab" data-toggle="tab">Đăng ký tham gia BH</a>
+            </li>
+            <li>
+                <a href="https://bshc.com.vn/ca-nhan/bao-hiem-bat-buoc-tnds-cua-chu-xe-may-2#1589352286850-187f51a8-5" target="_blank" role="tab">Quy tắc bảo hiểm</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content Containers -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="_FirstTab">
+                @using (Html.BeginForm("regorder", "Motorcyle"))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Người mua</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Tên khách hàng" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Điện thoại</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.dien_thoai, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số điện thoại" } })
+                                        @Html.ValidationMessageFor(m => m.dien_thoai, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Email</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Địa chỉ</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.dchi, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Địa chỉ" } })
+                                        @Html.ValidationMessageFor(m => m.dchi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Biển số</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.bien_xe, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Biển số xe" } })
+                                        @Html.ValidationMessageFor(m => m.bien_xe, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số khung</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.so_khung, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số khung" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số máy</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.so_may, new { htmlAttributes = new { @class = "form-control input-sm material_input", @placeholder = "Số máy" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Loại xe</label><span class="text-danger"> *</span>
+                                        @Html.DropDownList("LoaiXe", new SelectList(ViewBag.loaixe, "ID", "LX"), new { @class = "form-control input-sm material_input" })
+                                        @Html.HiddenFor(m => m.ma_bh)
+                                        @Html.HiddenFor(m => m.RefCode)
+                                        @Html.ValidationMessageFor(model => model.phibh_ds, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Tiền BH về người</label><span class="text-danger"> *</span>
+                                        <input class="form-control input-sm material_input" type="text" value="@Model.tienbh_ng.ToString("#,##0")" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Tiền BH về tài sản</label><span class="text-danger"> *</span>
+                                        <input class="form-control input-sm material_input" type="text" value="@Model.tienbh_ts.ToString("#,##0")" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Phí BH</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.phibh_ds, new { htmlAttributes = new { @class = "form-control input-sm material_input", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Số người</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.so_cn, new { htmlAttributes = new { @class = "form-control input-sm material_input" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">STBH/người</label><span class="text-danger"> *</span>
+                                        @Html.HiddenFor(model => model.tienbh_nn, new { @id = "tienbh_nn" })
+                                        @Html.DropDownList("TNN", new SelectList(ViewBag.tnn, "Phi", "STBH"), new { @class = "form-control input-sm material_input" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Phí BH</label><span class="text-danger"> *</span>
+                                        @Html.EditorFor(model => model.phibh_nn, new { htmlAttributes = new { @class = "form-control input-sm material_input", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Thời hạn</label><span class="text-danger"> *</span>
+                                        @Html.DropDownList("ThoiHan", new SelectList(ViewBag.thoihan, "ID", "TH"), new { @class = "form-control input-sm material_input" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Ngày hiệu lực</label><span class="text-danger"> *</span>
+                                        <input type="text" class="form-control input-sm datepicker material_input" name="NGAY_HL" id="NGAY_HL" value="@Model.ngay_hl" data-date-format="dd/mm/yyyy" data-date-start-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group material_input_block">
+                                        <label class="text-yellow">Ngày kết thúc</label><span class="text-danger"> *</span>
+                                        <input type="text" class="form-control input-sm datepicker material_input" name="NGAY_KT" id="NGAY_KT" value="@Model.ngay_kt" data-date-format="dd/mm/yyyy" data-date-start-date="0d" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" data-mask readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="text-yellow"> Tổng phí bảo hiểm : </label>
+                                        @Html.HiddenFor(m => m.phibh_ds)
+                                        <label id="lblPhiBH" class="description-header text-green"><output type="text" id="Tong_Phi" class="description-header text-green" /></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <input type="submit" class="btn btn-primary pull-left" value="Đăng ký" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function ddmmyyyy_to_mmddyyyy(theDate) {
+            strSeparator = ""
+            if (theDate.indexOf("/") != -1) strSeparator = "/";
+            if (theDate.indexOf("-") != -1) strSeparator = "-";
+            if (theDate.indexOf(".") != -1) strSeparator = ".";
+            if (strSeparator == "")
+                return "";
+            parts = theDate.split(strSeparator);
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+            return month + strSeparator + day + strSeparator + year.substr(0, 4);
+
+        }
+        function dateCompare(p_str_date1, p_str_date2) {
+            date1 = new Date(ddmmyyyy2mmddyyyy(p_str_date1));
+            date2 = new Date(ddmmyyyy2mmddyyyy(p_str_date2));
+            //alert(Math.floor((date2.getTime() - date1.getTime())/(1000*60*60*24)));
+            return Math.floor((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+        }
+
+        function GetToDate(date1, thoihan) {
+            var fromDate = new Date(ddmmyyyy_to_mmddyyyy(date1));
+            var d = new Date(fromDate);
+            var newdate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + (d.getFullYear() + thoihan);
+            return newdate;
+        }
+
+        function TinhPhi(ngaysinh, ctbh, thoihan) {
+            var phi = 0;
+            var hl = $('input#NGAY_HL').val();
+            $.ajax({
+                type: "GET",
+                async: false,
+                dataType: "json",
+                url: "../Motocyle/",
+                success: function (data) {
+                    phi = data.Phi;
+                }
+            });
+            return phi;
+        }
+        function TongPhi() {
+            var phi2 = parseInt($('input#phibh_ds').val());
+            var phi1 = parseInt($('input#phibh_nn').val());
+            var tongphi = (phi2 / 100 * 110) + phi1;
+            $("#Tong_Phi").val(tongphi + " VNĐ");
+        }
+
+
+
+        $(document).ready(function () {
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'icheckbox_flat-orange',
+                increaseArea: '20%' // optional
+            });
+
+            var ct = $('input#CTBH').val();
+            switch (ct) {
+                case 'Platinum':
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_platinum.png');
+                    $("#CT").text("Platinum");
+                    $("#STBH").text("50,000,000");
+                    $("#TTTBTN").text("100%");
+                    $("#CPYT").text("300,000");
+                    $("#STYT").text("25,000,000");
+                    $("#STPT").text("25,000,000");
+                    $("#STTC").text("25,000,000");
+                    break;
+                case 'Gold':
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_gold.png');
+                    $("#CT").text("Gold");
+                    $("#STBH").text("30,000,000");
+                    $("#TTTBTN").text("100%");
+                    $("#CPYT").text("200,000");
+                    $("#STYT").text("15,000,000");
+                    $("#STPT").text("15,000,000");
+                    $("#STTC").text("15,000,000");
+                    break;
+                default:
+                    ct = 'Diamond'
+                    $("#imgCTBH").prop('src', '../Content/img/topcare_diamond.png');
+                    $("#CT").text("Diamond");
+                    $("#STBH").text("100,000,000");
+                    $("#TTTBTN").text("50%");
+                    $("#CPYT").text("600,000");
+                    $("#STYT").text("50,000,000");
+                    $("#STPT").text("50,000,000");
+                    $("#STTC").text("50,000,000");
+                    break;
+            }
+            $('#KhachHang').change(function (event) {
+                if ($('#QH1 :selected').val() == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+            });
+            $('#CMND').change(function (event) {
+                if ($('#QH1 :selected').val() == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+            });
+            $('#QH1').change(function (event) {
+                if (this.value == 'Bản thân') {
+                    var kh = $('input#KhachHang').val();
+                    var cc = $('input#CMND').val();
+                    $("#HoTen1").prop('value', kh);
+                    $("#CMND1").prop('value', cc);
+                }
+                else {
+                    $("#HoTen1").prop('value', '');
+                    $("#CMND1").prop('value', '');
+                }
+            });
+            $('#termsChkbx').on('ifChecked', function (event) {
+                $("#regIns").prop('disabled', false);
+            });
+
+            $('#termsChkbx').on('ifUnchecked', function (event) {
+                $("#regIns").prop('disabled', true);
+            });
+
+            $('#ThoiHan').change(function (event) {
+                var th = $('#ThoiHan :selected').val();
+                var hl = $('input#NGAY_HL').val();
+                var lx = $('#LoaiXe :selected').val();
+                var so_cn = $('#so_cn').val();
+                var tnn = $('#TNN :selected').val();
+                switch (th) {
+                    case "1":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 1));
+                        $("#phibh_nn").val(tnn * so_cn * 1);
+                        break;
+                    case "2":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 2));
+                        $("#phibh_nn").val(tnn * so_cn * 2);
+                        break;
+                    case "3":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 3));
+                        $("#phibh_nn").val(tnn * so_cn * 3);
+                        break;
+                }
+                switch (lx) {
+                    case "N":
+                        $("#phibh_ds").val(55000 * th);
+                        break;
+                    case "L":
+                        $("#phibh_ds").val(60000 * th);
+                        break;
+                    case "B":
+                        $("#phibh_ds").val(290000 * th);
+                        break;
+                    case "D":
+                        $("#phibh_ds").val(55000 * th);
+                        break;
+                    default:
+                        $("#phibh_ds").val(0);
+
+                }
+                TongPhi();
+            });
+
+            $('#LoaiXe').change(function (event) {
+                var lx = $('#LoaiXe :selected').val();
+                var th = $('#ThoiHan :selected').val();
+                switch (lx) {
+                    case "N":
+                        $("#phibh_ds").val(55000 * th);
+                        break;
+                    case "L":
+                        $("#phibh_ds").val(60000 * th);
+                        break;
+                    case "B":
+                        $("#phibh_ds").val(290000 * th);
+                        break;
+                    case "D":
+                        $("#phibh_ds").val(55000 * th);
+                        break;
+                    default:
+                        $("#phibh_ds").val(0);
+                        break;
+                }
+                $("#ma_bh").val(lx);
+                TongPhi();
+            });
+
+            $('#NGAY_HL').change(function (event) {
+                var th = $('#ThoiHan :selected').val();
+                var hl = $('input#NGAY_HL').val();
+                switch (th) {
+                    case "1":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 1));
+                        break;
+                    case "2":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 2));
+                        break;
+                    case "3":
+                        $("#NGAY_KT").prop('value', GetToDate(hl, 3));
+                        break;
+                }
+                TongPhi();
+            });
+            $('#TNN').change(function (event) {
+                var tnn = $('#TNN :selected').val();
+                var so_cn = $('#so_cn').val();
+                var th = $('#ThoiHan :selected').val();
+                $("#phibh_nn").val(tnn * so_cn * th);
+                switch (tnn) {
+                    case "0":
+                        $("#tienbh_nn").val(0);
+                        break;
+                    case "5000":
+                        $("#tienbh_nn").val(5000000);
+                        break;
+                    case "10000":
+                        $("#tienbh_nn").val(10000000);
+                        break;
+                }
+                TongPhi();
+            });
+            $('#so_cn').change(function (event) {
+                var so_cn = $('#so_cn').val();
+                var lx = $('#LoaiXe :selected').val();
+                var tnn = $('#TNN :selected').val();
+                var th = $('#ThoiHan :selected').val();
+                if (lx === 'B') {
+                    if (so_cn > 3) {
+                        $("#so_cn").val(3);
+                        $("#phibh_nn").val(tnn * 3 * th);
+                    }
+                    else
+                        $("#phibh_nn").val(tnn * so_cn * th);
+                }
+                else {
+                    if (so_cn > 2) {
+                        $("#so_cn").val(2);
+                        $("#phibh_nn").val(tnn * 2 * th);
+                    }
+                    else
+                        $("#phibh_nn").val(tnn * so_cn * th);
+                }
+                TongPhi();
+            });
+        });
+    </script>
+}

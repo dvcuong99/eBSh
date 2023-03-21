@@ -1,0 +1,220 @@
+﻿@using System.Web.Optimization
+@using WebHelpers.Mvc5.Enum
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+        {
+            @ViewBag.Title@: -
+        }
+        CyberGuard
+    </title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @Styles.Render("~/Bundles/css")
+    <style>
+        .bs-wizard {
+            margin-top: 40px;
+        }
+        /*Form Wizard*/
+        .bs-wizard {
+            border-bottom: solid 1px #e0e0e0;
+            padding: 0 0 10px 0;
+        }
+
+            .bs-wizard > .bs-wizard-step {
+                padding: 0;
+                position: relative;
+            }
+
+                .bs-wizard > .bs-wizard-step + .bs-wizard-step {
+                }
+
+                .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
+                    color: #595959;
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                }
+
+                .bs-wizard > .bs-wizard-step .bs-wizard-info {
+                    color: #999;
+                    font-size: 14px;
+                }
+
+                .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    display: block;
+                    background: #fbe8aa;
+                    top: 45px;
+                    left: 50%;
+                    margin-top: -15px;
+                    margin-left: -15px;
+                    border-radius: 50%;
+                }
+
+                    .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+                        content: ' ';
+                        width: 14px;
+                        height: 14px;
+                        background: #fbbd19;
+                        border-radius: 50px;
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                    }
+
+                .bs-wizard > .bs-wizard-step > .progress {
+                    position: relative;
+                    border-radius: 0px;
+                    height: 8px;
+                    box-shadow: none;
+                    margin: 20px 0;
+                }
+
+                    .bs-wizard > .bs-wizard-step > .progress > .progress-bar {
+                        width: 0px;
+                        box-shadow: none;
+                        background: #fbe8aa;
+                    }
+
+                .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {
+                    width: 100%;
+                }
+
+                .bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {
+                    width: 50%;
+                }
+
+                .bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {
+                    width: 0%;
+                }
+
+                .bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {
+                    width: 100%;
+                }
+
+                .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
+                    background-color: #f5f5f5;
+                }
+
+                    .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
+                        opacity: 0;
+                    }
+
+                .bs-wizard > .bs-wizard-step:first-child > .progress {
+                    left: 50%;
+                    width: 50%;
+                }
+
+                .bs-wizard > .bs-wizard-step:last-child > .progress {
+                    width: 50%;
+                }
+
+                .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
+                    pointer-events: none;
+                }
+        /*END Form Wizard*/
+        .panel-pricing {
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+        }
+
+            .panel-pricing:hover {
+                box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .panel-pricing .panel-heading {
+                padding: 20px 10px;
+            }
+
+                .panel-pricing .panel-heading .fa {
+                    margin-top: 10px;
+                    font-size: 58px;
+                }
+
+            .panel-pricing .list-group-item {
+                color: #777777;
+                border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+            }
+
+                .panel-pricing .list-group-item:last-child {
+                    border-bottom-right-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                }
+
+                .panel-pricing .list-group-item:first-child {
+                    border-top-right-radius: 0px;
+                    border-top-left-radius: 0px;
+                }
+
+            .panel-pricing .panel-body {
+                background-color: #f0f0f0;
+                font-size: 40px;
+                color: #777777;
+                padding: 20px;
+                margin: 0px;
+            }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-888YGPTK46"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-888YGPTK46');
+    </script>
+</head>
+<body class="skin-yellow-light layout-top-nav">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            @* BEGIN Logo *@
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="https://www.cyberguard.vn" class="logo">
+                        <span class="logo-lg">
+                            <img src="~/Content/img/cyberguard_logo.png" width="200" />
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content-wrapper" style="min-height: 926px;">
+        <section class="content-header">
+            <h1>
+                @ViewBag.Title <small>@ViewBag.Description</small>
+            </h1>
+        </section>
+
+        <section class="container body-content">
+            @RenderBody()
+        </section>
+    </div>
+    <footer class="main-footer">
+        <b>Tổng công ty cổ phần Bảo hiểm Sài Gòn- Hà Nội</b>
+        <br />Địa chỉ: 86 Bà Triệu, Phường Hàng Bài, Quận Hoàn Kiếm, TP Hà Nội.
+        <br />Tel: 024.37931111 * Fax: 024. 37931155  *  Email: info@bshc.com.vn
+
+        <div class="pull-right hidden-xs">
+            <strong> <a href="https://bshc.com.vn">BSH</a></strong>
+            © 2020-@DateTime.Today.Year All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
+<script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
+<script src="@EnumHandler.HandlerUrl"></script>
+@Scripts.Render("~/Bundles/js")
+@RenderSection("ViewSpecificJavascript", required: false)
+@RenderSection("scripts", false)
